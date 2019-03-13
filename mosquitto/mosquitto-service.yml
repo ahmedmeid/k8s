@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: eclipse-mosquitto
+  namespace: default
+  labels:
+    app: eclipse-mosquitto
+spec:
+  selector:
+    app: eclipse-mosquitto
+  type: LoadBalancer
+  ports:
+  - name: mqtt
+    port: 1883

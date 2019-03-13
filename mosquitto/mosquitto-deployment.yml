@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: eclipse-mosquitto
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: eclipse-mosquitto
+    spec:
+      containers:
+      - name: eclipse-mosquitto
+        image: eclipse-mosquitto:1.5
+        ports:
+        - containerPort: 1883
+        
