@@ -1,0 +1,20 @@
+{
+  "generator-jhipster": {
+    "appsFolders": [
+      "cms",
+      "cvgs",
+      "vds"
+    ],
+    "directoryPath": "../",
+    "clusteredDbApps": [],
+    "serviceDiscoveryType": "eureka",
+    "jwtSecretKey": "N2QxNDU0NjNmMjI0ZTBhMWUyMjM3NTQ1ZTk3MTI2ODZhODdkNDJiOTQ5Mzg1ZTViM2E3ODBkMjU2OGJlN2FiODU4NzIyZTY0MTJmZjRhM2JmM2FmZDZlOTE5MjM2MDJhNWFiOQ==",
+    "dockerRepositoryName": "ahmedeidx",
+    "dockerPushCommand": "docker push",
+    "kubernetesNamespace": "default",
+    "kubernetesServiceType": "LoadBalancer",
+    "monitoring": "no",
+    "istio": "no",
+    "istioRoute": false
+  }
+}

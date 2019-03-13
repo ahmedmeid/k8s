@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cvgs-postgresql
+  namespace: default
+  labels:
+    app: cvgs-postgresql
+type: Opaque
+data:
+  postgres-password: eHlkdndubTk=
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cvgs-postgresql
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cvgs-postgresql
+    spec:
+      volumes:
+      - name: data
+        emptyDir: {}
+      containers:
+      - name: postgres
+        image: postgres:10.4
+        env:
+        - name: POSTGRES_USER
+          value: cvgs
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cvgs-postgresql
+              key: postgres-password
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cvgs-postgresql
+  namespace: default
+spec:
+  selector:
+    app: cvgs-postgresql
+  ports:
+  - port: 5432

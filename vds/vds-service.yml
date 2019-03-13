@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vds
+  namespace: default
+  labels:
+    app: vds
+spec:
+  selector:
+    app: vds
+  ports:
+  - name: http
+    port: 8082

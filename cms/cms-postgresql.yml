@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cms-postgresql
+  namespace: default
+  labels:
+    app: cms-postgresql
+type: Opaque
+data:
+  postgres-password: eHlkdndubTk=
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cms-postgresql
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cms-postgresql
+    spec:
+      volumes:
+      - name: data
+        emptyDir: {}
+      containers:
+      - name: postgres
+        image: postgres:10.4
+        env:
+        - name: POSTGRES_USER
+          value: cms
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cms-postgresql
+              key: postgres-password
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cms-postgresql
+  namespace: default
+spec:
+  selector:
+    app: cms-postgresql
+  ports:
+  - port: 5432

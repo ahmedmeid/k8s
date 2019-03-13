@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cvgs
+  namespace: default
+  labels:
+    app: cvgs
+spec:
+  selector:
+    app: cvgs
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 8080
