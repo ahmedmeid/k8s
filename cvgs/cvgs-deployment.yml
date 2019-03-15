@@ -49,6 +49,8 @@ spec:
           value: http://admin:${jhipster.registry.password}@jhipster-registry.default.svc.cluster.local:8761/eureka/
         - name: SPRING_DATASOURCE_URL
           value: jdbc:postgresql://cvgs-postgresql.default.svc.cluster.local:5432/cvgs
+        - name: MQTT_BROKER_URI
+          value: tcp://eclipse-mosquitto.default.svc.cluster.local:1883
         - name: SPRING_DATASOURCE_USERNAME
           value: cvgs
         - name: SPRING_DATASOURCE_PASSWORD
